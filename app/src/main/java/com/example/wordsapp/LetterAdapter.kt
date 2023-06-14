@@ -37,7 +37,7 @@ class LetterAdapter :
     /**
      * Provides a reference for the views needed to display items in your list.
      */
-    class LetterViewHolder(view: View) : RecyclerView.ViewHolder(view) {
+    class LetterViewHolder(val view: View) : RecyclerView.ViewHolder(view) {
         val button: Button = view.findViewById(R.id.button_item)
     }
 
@@ -65,7 +65,7 @@ class LetterAdapter :
         holder.button.text = item.toString()
 
         holder.button.setOnClickListener {
-            val context = holder.itemView.context
+            val context = holder.view.context
 
             val intent = Intent(context, DetailActivity::class.java)
             intent.putExtra(DetailActivity.LETTER, holder.button.text.toString())
