@@ -62,9 +62,11 @@ class LetterAdapter : RecyclerView.Adapter<LetterAdapter.LetterViewHolder>() {
         holder.button.text = item.toString()
 
         holder.button.setOnClickListener {
+            // Create an action from LetterListFragment to WordListFragment
             val action = LetterListFragmentDirections.actionLetterListFragmentToWordListFragment(
                 letter = holder.button.text.toString()
             )
+            // Navigate using that action
             holder.view.findNavController().navigate(action)
         }
     }
