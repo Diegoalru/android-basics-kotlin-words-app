@@ -14,10 +14,19 @@ class WordListFragment : Fragment() {
 
     private var _binding: FragmentWordListBinding? = null
     private val binding get() = _binding!!
+    private lateinit var letterId: String
 
     companion object {
         const val LETTER = "letter"
         const val SEARCH_PREFIX = "https://www.google.com/search?q="
+    }
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+
+        arguments?.let {
+            letterId = it.getString(LETTER).toString()
+        }
     }
 
     override fun onCreateView(
@@ -33,7 +42,7 @@ class WordListFragment : Fragment() {
         recyclerView.layoutManager = LinearLayoutManager(requireContext())
         // Access the RecyclerView Adapter and load the data into it
         recyclerView.adapter = WordAdapter(
-            activity?.intent?.extras?.getString(LETTER).toString(),
+            letterId,
             requireContext()
         )
         // Adds a [DividerItemDecoration] between items
